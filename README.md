@@ -1,3 +1,8 @@
+# pacbio assembly
+
+We are stealing this to combine with this [gist](https://gist.github.com/audy/26748bdf6f5e260dd6f6) to create a usable Pacbio assembly pipeline with their web-interface.
+
+
 # renseq
 Renseq Pacbio pipeline
 
