@@ -35,4 +35,6 @@ RUN usermod -d /tmp nobody
 
 USER admin
 
-ENTRYPOINT ["/home/admin/scripts/runRenSeq.sh"]
+EXPOSE 8080
+
+ENTRYPOINT ["/home/admin/scripts/runrun.sh"]

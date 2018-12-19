@@ -2,6 +2,17 @@
 
 We are stealing this to combine with this [gist](https://gist.github.com/audy/26748bdf6f5e260dd6f6) to create a usable Pacbio assembly pipeline with their web-interface.
 
+1. build an image:
+`docker build -t pacbio .`
+2. run it, exposing port and mounting volums:
+`docker run -dit -p 8080:8080 --volume /data:/data --name pacbio-container pacbio`
+semantics:
+`docker run -dit -p outside:inside --volume outside:inside --name pacbio-container pacbio`
+3. browse running container if you need to:
+`docker exec -it pacbio-container /bin/bash`
+4. access it in the browser:
+`localhost:8080`, `localhost:${outside}`, `${hostname}:8080` or , `${hostname}:${outside}`, where `${}` are placeholders ment to be replaced with the corresponding values.
+
 
 # renseq
 Renseq Pacbio pipeline
