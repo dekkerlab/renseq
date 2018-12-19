@@ -13,6 +13,14 @@ semantics:
 4. access it in the browser:
 `localhost:8080`, `localhost:${outside}`, `${hostname}:8080` or , `${hostname}:${outside}`, where `${}` are placeholders ment to be replaced with the corresponding values.
 
+## notes and todo-s:
+
+1. seems like we could have overwritten entrypoint with `docker run --entrypoint sript/runrun.sh`
+2. same goes for exposing ports: `docker run --expose 8080`
+3. 1 and 2 imply that could have just contributed to the original repo by adding a dummy `runrun.sh` and providing some instructions on how to achieve a running web-interface ...
+4. try doing it
+
+
 
 # renseq
 Renseq Pacbio pipeline
