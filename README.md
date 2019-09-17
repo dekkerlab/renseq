@@ -1,35 +1,27 @@
-# pacbio assembly
-
-We are stealing this to combine with this [gist](https://gist.github.com/audy/26748bdf6f5e260dd6f6) to create a usable Pacbio assembly pipeline with their web-interface.
-
-1. build an image:
-`docker build -t pacbio .`
-2. run it, exposing port and mounting volums:
-`docker run -dit -p 8080:8080 --volume /data:/data --name pacbio-container pacbio`
-semantics:
-`docker run -dit -p outside:inside --volume outside:inside --name pacbio-container pacbio`
-3. browse running container if you need to:
-`docker exec -it pacbio-container /bin/bash`
-4. access it in the browser:
-`localhost:8080`, `localhost:${outside}`, `${hostname}:8080` or , `${hostname}:${outside}`, where `${}` are placeholders ment to be replaced with the corresponding values.
-
-## notes and todo-s:
-
-1. seems like we could have overwritten entrypoint with `docker run --entrypoint sript/runrun.sh`
-2. same goes for exposing ports: `docker run --expose 8080`
-3. 1 and 2 imply that could have just contributed to the original repo by adding a dummy `runrun.sh` and providing some instructions on how to achieve a running web-interface ...
-4. try doing it
-
-
-
 # renseq
 Renseq Pacbio pipeline
 
 ![Docker infoimage badge](https://img.shields.io/badge/ImageInfo-_5.584_GB/_25_Layers_-blue.svg?style=flat-square)
 
-Apologies for the size of this image, but it installs the entire PACBio SMRT-Analysis suite which is quite big. And apparently, to run the CLI `smrtpipe.py`, [the whole suite *must* be installed](https://github.com/PacificBiosciences/SMRT-Analysis/issues/256), including a mysqldb and a full web stack for a web GUI that is never used. Anyway, most of the bulk seem to be folders mysteriously named "parameters" with a date. Gigs worth of parameters, why not?
+Apologies for the size of this image, but it installs the entire PACBio SMRT-Analysis suite which is quite big. And apparently, to run the CLI `smrtpipe.py`, [the whole suite *must* be installed](https://github.com/PacificBiosciences/SMRT-Analysis/issues/256), including a mysqldb and a full web stack for a web GUI that is never used (read). Anyway, most of the bulk seem to be folders mysteriously named "parameters" with a date. Gigs worth of parameters, why not?
+
+Combining this docker image with the entrypoint from the following [gist](https://gist.github.com/audy/26748bdf6f5e260dd6f6), one can run the fully functional web-interface of the PacBio assembly pipeline.
 
 ## Usage
+
+1. `renseq` pipeline:
+
 put your files in a folder that will be mounted in the image as a volume e.g. `data`. Then:
 
 `docker run -ti -v data:/home/admin/data cyverseuk/renseq /home/admin/data/adapter.fasta /home/admin/data/file1.h5 /home/admin/data/file2.h5 etc...`
+
+2. web-interface for PacBio assembly pipeline:
+
+run this docker exposing port, mounting volumes and providing alternative entrypoint:
+`docker run -dit  --entrypoint ./scripts/runWeb.sh --expose 8080 -p 8080:8080 --volume /data:/data --name pacbio-container pacbio`
+semantics:
+
+3. general docker tips:
+ - building this image: `docker build -t pacbio .`
+ - ports and volumes mapping semantics: `--port outside_port:inside_port --volume outside_path:inside_path`
+ - to access running web-interface in the browser go to: `0.0.0.0:outside_port` or `your_hostname:outside_port`
