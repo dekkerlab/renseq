@@ -35,7 +35,4 @@ RUN usermod -d /tmp nobody
 
 USER admin
 
-# # following could be provided as flags to "docker run"
-# # to be removed once functionality has been confirmed:
-# EXPOSE 8080
-# ENTRYPOINT ["/home/admin/scripts/runrun.sh"]
+ENTRYPOINT ["/home/admin/scripts/runRenSeq.sh"]
