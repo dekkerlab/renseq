@@ -3,7 +3,7 @@ Renseq Pacbio pipeline
 
 ![Docker infoimage badge](https://img.shields.io/badge/ImageInfo-_5.584_GB/_25_Layers_-blue.svg?style=flat-square)
 
-Apologies for the size of this image, but it installs the entire PACBio SMRT-Analysis suite which is quite big. And apparently, to run the CLI `smrtpipe.py`, [the whole suite *must* be installed](https://github.com/PacificBiosciences/SMRT-Analysis/issues/256), including a mysqldb and a full web stack for a web GUI that is never used (read). Anyway, most of the bulk seem to be folders mysteriously named "parameters" with a date. Gigs worth of parameters, why not?
+Apologies for the size of this image, but it installs the entire PACBio SMRT-Analysis suite which is quite big. And apparently, to run the CLI `smrtpipe.py`, [the whole suite *must* be installed](https://github.com/PacificBiosciences/SMRT-Analysis/issues/256), including a mysqldb and a full web stack for a web GUI that is never used (read below if it is really needed). Anyway, most of the bulk seem to be folders mysteriously named "parameters" with a date. Gigs worth of parameters, why not?
 
 Combining this docker image with the entrypoint from the following [gist](https://gist.github.com/audy/26748bdf6f5e260dd6f6), one can run the fully functional web-interface of the PacBio assembly pipeline.
 
